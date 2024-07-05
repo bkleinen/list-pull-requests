@@ -1,7 +1,0 @@
-{
-  "compilerOptions": {
-    "lib": ["ES2015","ES2018"],
-    "target": "ES2015",
-    "module": "CommonJS"
-  }
-}

@@ -31079,9 +31079,8 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
 "use strict";
-var exports = __webpack_exports__;
 
-Object.defineProperty(exports, "__esModule", ({ value: true }));
+
 const core = __nccwpck_require__(2619);
 const github = __nccwpck_require__(4637);
 const token = core.getInput('token');
@@ -31130,8 +31129,9 @@ function setOutput(pull) {
 const now = Date.now();
 const prom = pullRequests(repoOwner, repo);
 prom.then((pulls) => {
-    let claim = pulls.data.filter(p => filterLabel(p.labels, labels) && filterTime(p, now));
-    setOutput(claim);
+    let filtered = pulls.data.filter(p => filterLabel(p.labels, labels) && filterTime(p, now));
+    setOutput("pulls",pulls);
+    setOutput("claim",filtered);
 });
 
 })();

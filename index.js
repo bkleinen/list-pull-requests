@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+
 const core = require("@actions/core");
 const github = require("@actions/github");
 const token = core.getInput('token');
@@ -48,6 +48,7 @@ function setOutput(pull) {
 const now = Date.now();
 const prom = pullRequests(repoOwner, repo);
 prom.then((pulls) => {
-    let claim = pulls.data.filter(p => filterLabel(p.labels, labels) && filterTime(p, now));
-    setOutput(claim);
+    let filtered = pulls.data.filter(p => filterLabel(p.labels, labels) && filterTime(p, now));
+    setOutput("pulls",pulls);
+    setOutput("claim",filtered);
 });
